@@ -163,7 +163,7 @@
 					<span class="text-[12px] font-medium text-ink-faint">{modelName}</span>
 					{#if isStreaming}
 						<span
-							class="inline-block h-3.5 w-[2px] animate-pulse rounded bg-accent"
+							class="inline-block h-3.5 w-0.5 animate-pulse rounded bg-accent"
 							aria-hidden="true"
 						></span>
 					{/if}
@@ -180,7 +180,7 @@
 					<!-- svelte-ignore a11y_no_static_element_interactions -->
 					<div
 						bind:this={markdownBody}
-						class="prose prose-sm mt-1.5 ml-8 max-w-none break-words prose-zinc dark:prose-invert prose-a:text-accent-strong prose-code:before:hidden prose-code:after:hidden prose-pre:mt-3 prose-pre:bg-surface-2"
+						class="prose prose-sm mt-1.5 ml-8 max-w-none wrap-break-word prose-zinc dark:prose-invert prose-a:text-accent-strong prose-code:before:hidden prose-code:after:hidden prose-pre:mt-3 prose-pre:bg-surface-2"
 						onclick={onMarkdownClick}
 						onkeydown={(event) => {
 							if (event.key === 'Enter' || event.key === ' ') {

@@ -458,7 +458,7 @@
 	>{/snippet}
 <div
 	bind:this={rootRef.current}
-	class={`group relative mx-auto [width:min(var(--pb-w),100%)] text-[14px] leading-[22px] [color:var(--pb-ink)] ${className ? ` ${className}` : ''}`}
+	class={`group relative mx-auto w-[min(var(--pb-w),100%)] text-[14px] leading-5.5 text-(--pb-ink) ${className ? ` ${className}` : ''}`}
 	style={css({
 		'--pb-bg': background,
 		'--pb-ink': color,
@@ -469,7 +469,7 @@
 	} as CSSProperties)}
 >
 	{#if open}<div
-			class="absolute inset-x-0 bottom-[calc(100%+8px)] z-[2] origin-bottom [animation:prompt-bar-pop_180ms_cubic-bezier(0.23,1,0.32,1)_both] rounded-xl p-1 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.35),0_1px_2px_rgba(0,0,0,0.08)] [background:var(--pb-menu)] data-[kind=model]:right-auto data-[kind=model]:w-[200px] data-[kind=model]:origin-bottom-left motion-reduce:[animation:none]"
+			class="absolute inset-x-0 bottom-[calc(100%+8px)] z-2 origin-bottom animate-[prompt-bar-pop_180ms_cubic-bezier(0.23,1,0.32,1)_both] rounded-xl p-1 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.35),0_1px_2px_rgba(0,0,0,0.08)] [background:var(--pb-menu)] data-[kind=model]:right-auto data-[kind=model]:w-50 data-[kind=model]:origin-bottom-left motion-reduce:animate-none"
 			role="listbox"
 			aria-label={open === 'at' ? 'Sources' : open === 'slash' ? 'Commands' : 'Models'}
 			data-kind={open}
@@ -479,25 +479,25 @@
 					type="button"
 					role="option"
 					aria-selected={i === cursor}
-					class="relative z-[1] flex h-9 w-full cursor-pointer items-center gap-2.5 rounded-lg border-0 bg-transparent px-2 text-left text-inherit outline-none [-webkit-tap-highlight-color:transparent] [font:inherit]"
+					class="relative z-1 flex h-9 w-full cursor-pointer items-center gap-2.5 rounded-lg border-0 bg-transparent px-2 text-left text-inherit outline-none [-webkit-tap-highlight-color:transparent] [font:inherit]"
 					onmousedown={(e) => e.preventDefault()}
 					onpointerenter={() => (active = i)}
 					onclick={() => pick(row)}
 				>
 					<span class="flex-none text-[13px] font-medium">{row.name}</span>
 					{#if row.description}<span
-							class="min-w-0 flex-auto truncate text-[12px] [color:color-mix(in_srgb,var(--pb-ink)_55%,transparent)]"
+							class="min-w-0 flex-auto truncate text-[12px] text-[color-mix(in_srgb,var(--pb-ink)_55%,transparent)]"
 						>
 							{row.description}
 						</span>{/if}
 					{#if open === 'model'}
 						<span
-							class="ml-auto flex-none text-[11px] [color:color-mix(in_srgb,var(--pb-ink)_55%,transparent)]"
+							class="ml-auto flex-none text-[11px] text-[color-mix(in_srgb,var(--pb-ink)_55%,transparent)]"
 						>
 							{row.tag}
 						</span>
 						<span
-							class="inline-flex w-4 flex-none justify-center opacity-0 data-[on]:opacity-100"
+							class="inline-flex w-4 flex-none justify-center opacity-0 data-on:opacity-100"
 							data-on={row.key === model?.key ? '' : undefined}
 						>
 							{@render iconSvg(Tick02Icon, 13, 2.5)}
@@ -505,13 +505,13 @@
 					{/if}
 				</button>{/each}
 			{#if list.length === 0}<div
-					class="flex h-9 items-center px-2 text-[12px] [color:color-mix(in_srgb,var(--pb-ink)_55%,transparent)]"
+					class="flex h-9 items-center px-2 text-[12px] text-[color-mix(in_srgb,var(--pb-ink)_55%,transparent)]"
 				>
 					No matches for “{query}”
 				</div>{/if}
 		</div>{/if}
 	<div
-		class="relative isolate flex cursor-text flex-col gap-2 [border-radius:var(--pb-radius)] p-3 [background:var(--pb-bg)]"
+		class="relative isolate flex cursor-text flex-col gap-2 rounded-(--pb-radius) p-3 [background:var(--pb-bg)]"
 		role="presentation"
 		onpointerdown={(e) => {
 			if (e.target === e.currentTarget || e.target === inputRef.current) closeMenus();
@@ -520,13 +520,13 @@
 	>
 		{#if attachments.length > 0}<div class="flex flex-wrap gap-1.5">
 				{#each attachments as file, i (file)}<span
-						class="inline-flex h-[26px] [animation:prompt-bar-pop_200ms_cubic-bezier(0.23,1,0.32,1)_both] items-center gap-1.5 rounded-lg pr-1 pl-2 text-[12px] [background:color-mix(in_srgb,var(--pb-ink)_8%,transparent)] motion-reduce:[animation:none]"
+						class="inline-flex h-6.5 animate-[prompt-bar-pop_200ms_cubic-bezier(0.23,1,0.32,1)_both] items-center gap-1.5 rounded-lg pr-1 pl-2 text-[12px] [background:color-mix(in_srgb,var(--pb-ink)_8%,transparent)] motion-reduce:animate-none"
 					>
 						{@render iconSvg(File02Icon, 12, 2)}
-						<span class="max-w-[144px] truncate">{file}</span>
+						<span class="max-w-36 truncate">{file}</span>
 						<button
 							type="button"
-							class="inline-grid h-[18px] w-[18px] cursor-pointer place-items-center rounded-[5px] border-0 bg-transparent p-0 text-inherit opacity-60 outline-none [transition:opacity_120ms_ease,background-color_120ms_ease] hover:opacity-100 hover:[background:color-mix(in_srgb,var(--pb-ink)_10%,transparent)]"
+							class="inline-grid h-4.5 w-4.5 cursor-pointer place-items-center rounded-[5px] border-0 bg-transparent p-0 text-inherit opacity-60 outline-none [transition:opacity_120ms_ease,background-color_120ms_ease] hover:opacity-100 hover:[background:color-mix(in_srgb,var(--pb-ink)_10%,transparent)]"
 							aria-label={`Remove ${file}`}
 							onclick={() => setAttachments((a) => a.filter((_, j) => j !== i))}
 						>
@@ -536,7 +536,7 @@
 			</div>{/if}
 		<textarea
 			bind:this={inputRef.current}
-			class="block w-full resize-none border-0 bg-transparent p-0 text-[14px] leading-[22px] [overflow-wrap:anywhere] text-inherit outline-none [font:inherit] placeholder:[color:color-mix(in_srgb,var(--pb-ink)_45%,transparent)] [@media(pointer:coarse)]:text-[16px]"
+			class="block w-full resize-none border-0 bg-transparent p-0 text-[14px] leading-5.5 wrap-anywhere text-inherit outline-none [font:inherit] placeholder:text-[color-mix(in_srgb,var(--pb-ink)_45%,transparent)] pointer-coarse:text-[16px]"
 			rows={1}
 			value={draft}
 			{placeholder}
@@ -552,7 +552,7 @@
 		<div class="flex items-center gap-1">
 			{#if hasMenus}<button
 					type="button"
-					class="inline-grid h-7 w-7 flex-none cursor-pointer touch-manipulation place-items-center rounded-lg border-0 bg-transparent p-0 [color:color-mix(in_srgb,var(--pb-ink)_60%,transparent)] outline-none select-none [-webkit-tap-highlight-color:transparent] [font:inherit] [transition:background-color_150ms_ease,color_150ms_ease,transform_160ms_cubic-bezier(0.23,1,0.32,1)] active:[transform:scale(0.94)] data-[on]:[color:var(--pb-ink)] data-[on]:[background:color-mix(in_srgb,var(--pb-ink)_8%,transparent)] motion-reduce:active:[transform:none] [@media(hover:hover)_and_(pointer:fine)]:hover:[color:var(--pb-ink)] [@media(hover:hover)_and_(pointer:fine)]:hover:[background:color-mix(in_srgb,var(--pb-ink)_8%,transparent)]"
+					class="inline-grid h-7 w-7 flex-none cursor-pointer touch-manipulation place-items-center rounded-lg border-0 bg-transparent p-0 text-[color-mix(in_srgb,var(--pb-ink)_60%,transparent)] outline-none select-none [-webkit-tap-highlight-color:transparent] [font:inherit] [transition:background-color_150ms_ease,color_150ms_ease,transform_160ms_cubic-bezier(0.23,1,0.32,1)] active:transform-[scale(0.94)] data-on:text-(--pb-ink) data-on:[background:color-mix(in_srgb,var(--pb-ink)_8%,transparent)] motion-reduce:active:transform-none [@media(hover:hover)_and_(pointer:fine)]:hover:text-(--pb-ink) [@media(hover:hover)_and_(pointer:fine)]:hover:[background:color-mix(in_srgb,var(--pb-ink)_8%,transparent)]"
 					aria-label="Add files and sources"
 					aria-expanded={plusOpen}
 					data-on={plusOpen ? '' : undefined}
@@ -577,7 +577,7 @@
 				</button>{/if}
 			{#if models.length > 0}<button
 					type="button"
-					class="inline-flex h-7 flex-none cursor-pointer touch-manipulation items-center gap-1 rounded-lg border-0 bg-transparent px-2 text-[12px] font-medium [color:color-mix(in_srgb,var(--pb-ink)_70%,transparent)] outline-none select-none [-webkit-tap-highlight-color:transparent] [font:inherit] [transition:background-color_150ms_ease,color_150ms_ease] data-[on]:[color:var(--pb-ink)] data-[on]:[background:color-mix(in_srgb,var(--pb-ink)_8%,transparent)] [@media(hover:hover)_and_(pointer:fine)]:hover:[color:var(--pb-ink)] [@media(hover:hover)_and_(pointer:fine)]:hover:[background:color-mix(in_srgb,var(--pb-ink)_8%,transparent)]"
+					class="inline-flex h-7 flex-none cursor-pointer touch-manipulation items-center gap-1 rounded-lg border-0 bg-transparent px-2 text-[12px] font-medium text-[color-mix(in_srgb,var(--pb-ink)_70%,transparent)] outline-none select-none [-webkit-tap-highlight-color:transparent] [font:inherit] [transition:background-color_150ms_ease,color_150ms_ease] data-on:text-(--pb-ink) data-on:[background:color-mix(in_srgb,var(--pb-ink)_8%,transparent)] [@media(hover:hover)_and_(pointer:fine)]:hover:text-(--pb-ink) [@media(hover:hover)_and_(pointer:fine)]:hover:[background:color-mix(in_srgb,var(--pb-ink)_8%,transparent)]"
 					aria-label="Choose model"
 					aria-expanded={modelOpen}
 					data-on={modelOpen ? '' : undefined}
@@ -595,7 +595,7 @@
 			<span class="flex-auto"></span>
 			<button
 				type="button"
-				class="relative inline-grid h-7 w-7 flex-none cursor-pointer touch-manipulation place-items-center rounded-lg border-0 p-0 [color:color-mix(in_srgb,var(--pb-ink)_55%,var(--pb-bg))] outline-none select-none [-webkit-tap-highlight-color:transparent] [background:color-mix(in_srgb,var(--pb-ink)_12%,var(--pb-bg))] [font:inherit] [transition:background-color_200ms_ease,color_200ms_ease,transform_160ms_cubic-bezier(0.23,1,0.32,1)] disabled:cursor-default data-[armed]:[color:var(--pb-bg)] data-[armed]:ring-1 data-[armed]:ring-[color-mix(in_srgb,var(--pb-ink)_25%,transparent)] data-[armed]:[background:var(--pb-ink)] data-[pressed]:[transform:scale(var(--pb-press))] motion-reduce:data-[pressed]:[transform:none]"
+				class="relative inline-grid h-7 w-7 flex-none cursor-pointer touch-manipulation place-items-center rounded-lg border-0 p-0 text-[color-mix(in_srgb,var(--pb-ink)_55%,var(--pb-bg))] outline-none select-none [-webkit-tap-highlight-color:transparent] [background:color-mix(in_srgb,var(--pb-ink)_12%,var(--pb-bg))] [font:inherit] [transition:background-color_200ms_ease,color_200ms_ease,transform_160ms_cubic-bezier(0.23,1,0.32,1)] disabled:cursor-default data-armed:text-(--pb-bg) data-armed:ring-1 data-armed:ring-[color-mix(in_srgb,var(--pb-ink)_25%,transparent)] data-armed:[background:var(--pb-ink)] data-pressed:transform-[scale(var(--pb-press))] motion-reduce:data-pressed:transform-none"
 				disabled={!armed}
 				aria-label={busy ? 'Stop' : 'Send'}
 				data-armed={armed ? '' : undefined}
