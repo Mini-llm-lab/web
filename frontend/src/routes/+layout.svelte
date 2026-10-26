@@ -1,7 +1,8 @@
 <script lang="ts">
 	import './layout.css';
 	import favicon from '#lib/assets/favicon.svg';
-	import Sidebar from '#lib/components/Sidebar.svelte';
+	import * as Sidebar from '#lib/components/ui/sidebar/index.js';
+	import AppSidebar from '#lib/components/app-sidebar.svelte';
 	import { initConversations } from '#lib/stores/conversations.svelte';
 	import { initSettings } from '#lib/stores/settings.svelte';
 	import { loadModels } from '#lib/stores/models.svelte';
@@ -19,6 +20,9 @@
 	<title>Mini Web — chat Mini-LLM</title>
 </svelte:head>
 
-<Sidebar>
-	{@render children()}
-</Sidebar>
+<Sidebar.Provider class="h-dvh overflow-hidden bg-bg">
+	<AppSidebar />
+	<main class="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
+		{@render children()}
+	</main>
+</Sidebar.Provider>
