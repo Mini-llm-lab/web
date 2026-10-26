@@ -71,7 +71,7 @@
 	<ChatHeader />
 	<div class="relative min-h-0 flex-1">
 		<div class="absolute inset-0 overflow-hidden" aria-hidden="true">
-			<Prism timeScale={0.5} scale={6} />
+			<Prism timeScale={0.5} scale={2} />
 		</div>
 		<div class="relative z-10 flex h-full flex-col justify-center px-4 pb-6">
 			<div class="mb-6 flex items-center justify-center gap-4">
