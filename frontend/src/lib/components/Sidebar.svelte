@@ -4,8 +4,7 @@
 	import ConversationList from '#lib/components/ConversationList.svelte';
 	import StatusBar from '#lib/components/StatusBar.svelte';
 	import { ui, setDrawer } from '#lib/stores/ui.svelte';
-	import { createNewConversation, selectConversation } from '#lib/stores/conversations.svelte';
-	import { pickModelId } from '#lib/chat/generation.svelte';
+	import { closeConversation } from '#lib/stores/conversations.svelte';
 
 	let { children }: { children?: import('svelte').Snippet } = $props();
 
@@ -66,10 +65,8 @@
 		setDrawer(false);
 	}
 
-	function startNewConversation(): void {
-		const modelId = pickModelId() ?? 'minillm-150m';
-		const conversation = createNewConversation(modelId);
-		selectConversation(conversation.id);
+	function startNewChat(): void {
+		closeConversation();
 		closeDrawer();
 	}
 </script>
@@ -98,7 +95,7 @@
 			<button
 				type="button"
 				class="flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-strong active:scale-[0.98]"
-				onclick={startNewConversation}
+				onclick={startNewChat}
 			>
 				<Plus size={16} />
 				New chat

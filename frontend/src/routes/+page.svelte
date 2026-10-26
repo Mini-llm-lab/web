@@ -2,7 +2,7 @@
 	import ChatHeader from '#lib/components/ChatHeader.svelte';
 	import MessagesView from '#lib/components/MessagesView.svelte';
 	import PromptBar from '#lib/components/PromptBar.svelte';
-	import Welcome from '#lib/components/Welcome.svelte';
+	import Prism from '#lib/components/Prism.svelte';
 	import {
 		activeConversation,
 		createNewConversation,
@@ -69,9 +69,11 @@
 	</div>
 {:else}
 	<ChatHeader />
-	<div class="flex min-h-0 flex-1 flex-col justify-center px-4 pb-6">
-		<Welcome />
-		<div class="mt-8">
+	<div class="relative min-h-0 flex-1">
+		<div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+			<Prism timeScale={0.5} />
+		</div>
+		<div class="relative flex h-full flex-col justify-center px-4 pb-6">
 			<PromptBar
 				placeholder="Ask anything…"
 				{models}
