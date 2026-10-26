@@ -185,19 +185,31 @@ void main() {
 		});
 		const mesh = new Mesh(gl, { geometry, program });
 
-		const resize = () => {
+		const RESIZE_INTERVAL = 100;
+		const RESIZE_SETTLE = 150;
+		let lastAppliedAt = 0;
+		let settleTimer: ReturnType<typeof setTimeout> | null = null;
+
+		const applySize = () => {
 			const w = container.clientWidth || 1;
 			const h = container.clientHeight || 1;
 			renderer.setSize(w, h);
+			gl.canvas.style.width = '100%';
+			gl.canvas.style.height = '100%';
 			iResBuf[0] = gl.drawingBufferWidth;
 			iResBuf[1] = gl.drawingBufferHeight;
 			offsetPxBuf[0] = offX * dpr;
 			offsetPxBuf[1] = offY * dpr;
 			program.uniforms.uPxScale.value = 1 / ((gl.drawingBufferHeight || 1) * 0.1 * SCALE);
+			lastAppliedAt = performance.now();
 		};
-		const ro = new ResizeObserver(resize);
+		const ro = new ResizeObserver(() => {
+			if (settleTimer) clearTimeout(settleTimer);
+			settleTimer = setTimeout(applySize, RESIZE_SETTLE);
+			if (performance.now() - lastAppliedAt >= RESIZE_INTERVAL) applySize();
+		});
 		ro.observe(container);
-		resize();
+		applySize();
 
 		const rotBuf = new Float32Array(9);
 		const setMat3FromEuler = (yawY: number, pitchX: number, rollZ: number, out: Float32Array) => {
@@ -338,6 +350,7 @@ void main() {
 		return () => {
 			stopRAF();
 			ro.disconnect();
+			if (settleTimer) clearTimeout(settleTimer);
 			if (animationType === 'hover') {
 				if (onPointerMove) {
 					window.removeEventListener('pointermove', onPointerMove as EventListener);
