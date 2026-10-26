@@ -70,10 +70,19 @@
 {:else}
 	<ChatHeader />
 	<div class="relative min-h-0 flex-1">
-		<div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+		<div class="absolute inset-0 overflow-hidden" aria-hidden="true">
 			<Prism timeScale={0.5} />
 		</div>
-		<div class="relative flex h-full flex-col justify-center px-4 pb-6">
+		<div class="relative z-10 flex h-full flex-col justify-center px-4 pb-6">
+			<div class="mb-6 flex items-center justify-center gap-4">
+				<span
+					class="flex h-13 w-13 items-center justify-center rounded-2xl bg-accent shadow-sm"
+					aria-hidden="true"
+				>
+					<span class="h-6 w-6 rounded-full bg-gradient-to-br from-white/80 to-white/30"></span>
+				</span>
+				<h1 class="text-3xl font-semibold tracking-tight text-ink">Mini</h1>
+			</div>
 			<PromptBar
 				placeholder="Ask anything…"
 				{models}
