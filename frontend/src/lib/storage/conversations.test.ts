@@ -25,7 +25,7 @@ describe('MemoryBackend', () => {
 describe('createConversation / createMessage', () => {
 	it('creates a conversation with stable shape', () => {
 		const conversation = createConversation('minillm-40m');
-		expect(conversation.title).toBe('Nouvelle conversation');
+		expect(conversation.title).toBe('New chat');
 		expect(conversation.modelId).toBe('minillm-40m');
 		expect(conversation.messages).toEqual([]);
 		expect(typeof conversation.id).toBe('string');
@@ -130,7 +130,7 @@ describe('corrupted storage', () => {
 			])
 		);
 		const result = loadConversations(backend);
-		expect(result.conversations[0].title).toBe('Nouvelle conversation');
+		expect(result.conversations[0].title).toBe('New chat');
 		expect(result.conversations[0].messages[0].id).toBeTruthy();
 		expect(result.conversations[0].messages[0].status).toBe('complete');
 	});

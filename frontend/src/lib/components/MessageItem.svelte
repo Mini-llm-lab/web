@@ -80,7 +80,7 @@
 			button.type = 'button';
 			button.className = 'codeblock-copy';
 			button.setAttribute('data-code-copy', '');
-			button.textContent = 'Copier';
+			button.textContent = 'Copy';
 			head.append(button);
 			pre.replaceWith(wrapper);
 			wrapper.append(head, pre);
@@ -96,9 +96,9 @@
 		navigator.clipboard
 			.writeText(text)
 			.then(() => {
-				button.textContent = 'Copié !';
+				button.textContent = 'Copied!';
 				gsap.fromTo(button, { opacity: 0.4 }, { opacity: 1, duration: 0.25 });
-				setTimeout(() => (button.textContent = 'Copier'), 1400);
+				setTimeout(() => (button.textContent = 'Copy'), 1400);
 			})
 			.catch(() => {});
 	}
@@ -139,10 +139,7 @@
 							</p>
 						{:else}
 							<p class="text-[13px] font-medium text-danger">
-								{friendlyMessage(
-									message.errorCode ?? 'generation_failed',
-									'La génération a échoué.'
-								)}
+								{friendlyMessage(message.errorCode ?? 'generation_failed', 'Generation failed.')}
 							</p>
 						{/if}
 						<button
@@ -151,7 +148,7 @@
 							onclick={() => retryLastGeneration(conversation)}
 						>
 							<RotateCcw size={13} />
-							Réessayer
+							Retry
 						</button>
 					</div>
 				</div>
@@ -175,7 +172,7 @@
 							class="inline-flex items-center gap-1 rounded-md bg-surface-2 px-1.5 py-0.5 text-[10px] font-medium text-ink-faint"
 						>
 							<Square size={9} />
-							Interrompue
+							Stopped
 						</span>
 					{/if}
 				</div>
@@ -196,14 +193,14 @@
 					</div>
 				{:else if isStreaming}
 					<p class="mt-1 ml-8 text-[13px] text-ink-faint">
-						Génération en cours<span class="dots">…</span>
+						Generating<span class="dots">…</span>
 					</p>
 				{/if}
 				{#if !isStreaming && message.content}
 					<button
 						type="button"
 						class="absolute top-0 right-0 rounded-md p-1.5 text-ink-faint opacity-0 transition-opacity group-hover:opacity-100 hover:bg-surface-2 hover:text-ink"
-						aria-label="Copier le message"
+						aria-label="Copy message"
 						onclick={copyAll}
 					>
 						{#if copied}<Check size={14} class="text-ok" />{:else}<Copy size={14} />{/if}

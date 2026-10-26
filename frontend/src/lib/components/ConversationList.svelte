@@ -44,7 +44,7 @@
 </script>
 
 {#if conversations.length === 0}
-	<p class="px-2 py-4 text-[13px] text-ink-faint">Aucune conversation pour le moment.</p>
+	<p class="px-2 py-4 text-[13px] text-ink-faint">No conversations yet.</p>
 {:else}
 	<ul class="flex flex-col gap-0.5 py-1" role="list">
 		{#each conversations as conversation (conversation.id)}
@@ -56,7 +56,7 @@
 							class="w-full min-w-0 rounded-md border border-line bg-surface px-2 py-1 text-[13px] text-ink outline-none focus:border-accent"
 							bind:value={draftTitle}
 							maxlength={80}
-							aria-label="Nouveau titre"
+							aria-label="New title"
 							onkeydown={(event) => {
 								event.stopPropagation();
 								if (event.key === 'Enter') commitRename(conversation.id);
@@ -67,7 +67,7 @@
 						<button
 							type="button"
 							class="rounded p-1 text-ink-soft hover:text-ink"
-							aria-label="Valider le titre"
+							aria-label="Confirm title"
 							onclick={() => commitRename(conversation.id)}
 						>
 							<Check size={14} />
@@ -75,7 +75,7 @@
 						<button
 							type="button"
 							class="rounded p-1 text-ink-soft hover:text-ink"
-							aria-label="Annuler"
+							aria-label="Cancel"
 							onclick={cancelRename}
 						>
 							<X size={14} />
@@ -105,13 +105,13 @@
 								class="rounded-md bg-danger px-1.5 py-1 text-[10px] font-medium text-white"
 								onclick={() => requestDelete(conversation.id)}
 							>
-								Confirmer
+								Confirm
 							</button>
 						{:else}
 							<button
 								type="button"
 								class="rounded-md p-1 text-ink-faint hover:bg-surface-2 hover:text-ink"
-								aria-label="Renommer la conversation"
+								aria-label="Rename conversation"
 								onclick={() => startRename(conversation.id, conversation.title)}
 							>
 								<Pencil size={13} />
@@ -119,7 +119,7 @@
 							<button
 								type="button"
 								class="rounded-md p-1 text-ink-faint hover:bg-danger-soft hover:text-danger"
-								aria-label="Supprimer la conversation"
+								aria-label="Delete conversation"
 								onclick={() => requestDelete(conversation.id)}
 							>
 								<Trash2 size={13} />

@@ -10,7 +10,7 @@
 	<button
 		type="button"
 		class="rounded-md border border-line bg-surface p-2 text-ink-soft md:hidden"
-		aria-label="Ouvrir le menu"
+		aria-label="Open menu"
 		onclick={toggleDrawer}
 	>
 		<Menu size={18} />

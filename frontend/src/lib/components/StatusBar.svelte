@@ -6,10 +6,10 @@
 
 	const warning = $derived.by(() => {
 		if (!conversationsStore.persistent) {
-			return "Stockage local indisponible : l'historique ne survivra pas au rechargement.";
+			return 'Local storage unavailable: history will not survive a reload.';
 		}
 		if (conversationsStore.corrupted) {
-			return 'Historique local corrompu : il a été réinitialisé.';
+			return 'Local history was corrupted and has been reset.';
 		}
 		return '';
 	});
@@ -23,7 +23,7 @@
 			onclick={() => loadModels()}
 		>
 			<AlertTriangle size={14} class="shrink-0" />
-			<span class="flex-1">Serveur injoignable.</span>
+			<span class="flex-1">Server unreachable.</span>
 			<RotateCcw size={14} class="shrink-0" />
 		</button>
 	{/if}

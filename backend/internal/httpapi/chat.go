@@ -28,7 +28,7 @@ type chatRequest struct {
 
 func (s *Server) handleChat(w http.ResponseWriter, r *http.Request) {
 	if !s.limiter.Allow(middleware.ClientIP(r), time.Now()) {
-		writeAPIError(w, http.StatusTooManyRequests, "rate_limited", "Trop de requêtes. Réessayez dans un instant.")
+		writeAPIError(w, http.StatusTooManyRequests, "rate_limited", "Too many requests. Try again in a moment.")
 		return
 	}
 	body := http.MaxBytesReader(w, r.Body, s.cfg.RequestBodyLimit)
@@ -37,11 +37,11 @@ func (s *Server) handleChat(w http.ResponseWriter, r *http.Request) {
 	decoder.DisallowUnknownFields()
 	if err := decoder.Decode(&payload); err != nil {
 		status := http.StatusBadRequest
-		message := "Requête JSON invalide."
+		message := "Invalid JSON request."
 		var maxErr *http.MaxBytesError
 		if errors.As(err, &maxErr) {
 			status = http.StatusRequestEntityTooLarge
-			message = "Corps de la requête trop volumineux."
+			message = "Request body too large."
 		}
 		writeAPIError(w, status, "invalid_request", message)
 		return
@@ -49,7 +49,7 @@ func (s *Server) handleChat(w http.ResponseWriter, r *http.Request) {
 
 	model, ok := models.Get(payload.Model)
 	if !ok {
-		writeAPIError(w, http.StatusBadRequest, "unknown_model", "Modèle inconnu.")
+		writeAPIError(w, http.StatusBadRequest, "unknown_model", "Unknown model.")
 		return
 	}
 	if err := s.validateMessages(payload.Messages, model); err != nil {
@@ -93,7 +93,7 @@ func (s *Server) handleChat(w http.ResponseWriter, r *http.Request) {
 	case errors.Is(streamErr, inference.ErrNotConfigured):
 		_ = sse.emit("error", map[string]string{
 			"code":    "not_configured",
-			"message": "Aucun backend d'inférence n'est configuré pour ce modèle.",
+			"message": "No inference backend is configured for this model.",
 		})
 	case isCancellation(streamErr):
 		s.logger.Info("generation canceled", "requestId", requestID, "model", model.ID)
@@ -101,7 +101,7 @@ func (s *Server) handleChat(w http.ResponseWriter, r *http.Request) {
 		s.logger.Error("generation failed", "requestId", requestID, "model", model.ID, "error", streamErr)
 		_ = sse.emit("error", map[string]string{
 			"code":    "generation_failed",
-			"message": "La génération a échoué. Ressayez plus tard.",
+			"message": "Generation failed. Try again later.",
 		})
 	}
 }
@@ -109,25 +109,25 @@ func (s *Server) handleChat(w http.ResponseWriter, r *http.Request) {
 func (s *Server) validateMessages(messages []chatMessage, model models.Model) error {
 	switch {
 	case len(messages) == 0:
-		return errors.New("messages ne peut pas être vide")
+		return errors.New("messages cannot be empty")
 	case len(messages) > s.cfg.MaxMessages:
-		return errors.New("trop de messages dans l'historique")
+		return errors.New("too many messages in history")
 	}
 	total := 0
 	for _, message := range messages {
 		runes := []rune(message.Content)
 		switch {
 		case message.Role != "user" && message.Role != "assistant":
-			return errors.New("rôle invalide")
+			return errors.New("invalid role")
 		case len(runes) == 0:
-			return errors.New("message vide")
+			return errors.New("empty message")
 		case len(runes) > s.cfg.MaxMessageLen:
-			return errors.New("message trop long")
+			return errors.New("message too long")
 		}
 		total += len(runes)
 	}
 	if total > model.MaxContextChars() {
-		return errors.New("l'historique dépasse le contexte du modèle")
+		return errors.New("history exceeds the model context")
 	}
 	return nil
 }

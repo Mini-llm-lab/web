@@ -127,7 +127,7 @@ describe('streamChat', () => {
 	it('surfaces HTTP error codes from the JSON error payload', async () => {
 		fetchMock.mockResolvedValue(
 			new Response(
-				JSON.stringify({ error: { code: 'unknown_model', message: 'Modèle inconnu.' } }),
+				JSON.stringify({ error: { code: 'unknown_model', message: 'Unknown model.' } }),
 				{
 					status: 400
 				}

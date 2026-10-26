@@ -35,16 +35,16 @@ export type SseEventHandler = (event: { name: string; data: string }) => void;
 
 export const ERROR_MESSAGES: Record<string, string> = {
 	not_configured:
-		"Ce modèle n'a pas encore de backend d'inférence connecté. La génération n'est pas disponible pour le moment.",
-	generation_failed: 'La génération a échoué. Réessayez dans un instant.',
-	rate_limited: 'Trop de requêtes. Attendez quelques secondes avant de renvoyer un message.',
-	invalid_request: 'Requête refusée par le serveur.',
-	invalid_messages: 'La conversation dépasse les limites acceptées par ce modèle.',
-	unknown_model: 'Ce modèle est inconnu du serveur.',
-	empty_response: "Le modèle n'a renvoyé aucun contenu.",
-	network: 'Impossible de joindre le serveur. Vérifiez que le backend est lancé.',
-	http_error: 'Le serveur a répondu avec une erreur inattendue.',
-	stream_error: 'La connexion a été interrompue pendant la génération.'
+		'This model has no inference backend connected yet. Generation is not available at the moment.',
+	generation_failed: 'Generation failed. Try again in a moment.',
+	rate_limited: 'Too many requests. Wait a few seconds before sending another message.',
+	invalid_request: 'The request was rejected by the server.',
+	invalid_messages: 'The conversation exceeds the limits accepted by this model.',
+	unknown_model: 'This model is unknown to the server.',
+	empty_response: 'The model returned no content.',
+	network: 'Unable to reach the server. Check that the backend is running.',
+	http_error: 'The server returned an unexpected error.',
+	stream_error: 'The connection was interrupted during generation.'
 };
 
 export function friendlyMessage(code: string, fallback: string): string {

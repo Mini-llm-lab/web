@@ -45,12 +45,12 @@ func (f Fake) Stream(ctx context.Context, req Request, emit func(text string) er
 		delay = 25 * time.Millisecond
 	}
 	tokens := []string{
-		"Aperçu du modèle " + req.Model + " : ",
-		"ce texte est produit par le fournisseur de test, pas par un modèle réel.\n\n",
-		"La génération est diffusée token par token pour valider le pipeline de streaming SSE ",
-		"(deltas, rendu progressif et annulation). ",
-		"Votre message : " + truncate(req.Messages[len(req.Messages)-1].Content, 120) + "\n\n",
-		"Le vrai moteur d'inférence n'est pas encore branché.",
+		"Model preview " + req.Model + ": ",
+		"this text is produced by the test provider, not by a real model.\n\n",
+		"Generation is streamed token by token to validate the SSE streaming pipeline ",
+		"(deltas, progressive rendering and cancellation). ",
+		"Your message: " + truncate(req.Messages[len(req.Messages)-1].Content, 120) + "\n\n",
+		"The real inference engine is not wired up yet.",
 	}
 	for _, token := range tokens {
 		select {

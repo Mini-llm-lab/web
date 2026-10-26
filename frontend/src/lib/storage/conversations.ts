@@ -33,7 +33,7 @@ export function createConversation(modelId: string): StoredConversation {
 	const now = Date.now();
 	return {
 		id: createId(),
-		title: 'Nouvelle conversation',
+		title: 'New chat',
 		createdAt: now,
 		updatedAt: now,
 		modelId,
@@ -43,7 +43,7 @@ export function createConversation(modelId: string): StoredConversation {
 
 export function titleFromMessage(content: string): string {
 	const normalized = content.replace(/\s+/g, ' ').trim();
-	if (!normalized) return 'Nouvelle conversation';
+	if (!normalized) return 'New chat';
 	return normalized.length > 48 ? `${normalized.slice(0, 48).trimEnd()}…` : normalized;
 }
 
@@ -110,8 +110,7 @@ function normalizeConversation(item: unknown, version: number): StoredConversati
 	if (!id || !modelId) return null;
 	const updatedAtRaw = toPositiveInt(item.updatedAt);
 	const createdAt = toPositiveInt(item.createdAt) ?? updatedAtRaw ?? Date.now();
-	const title =
-		typeof item.title === 'string' && item.title.trim() ? item.title : 'Nouvelle conversation';
+	const title = typeof item.title === 'string' && item.title.trim() ? item.title : 'New chat';
 	const messages = normalizeMessages(item.messages, modelId);
 	if (version < SCHEMA_VERSION) {
 		for (const message of messages) {

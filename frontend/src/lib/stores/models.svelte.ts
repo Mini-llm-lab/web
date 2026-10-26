@@ -31,7 +31,7 @@ export async function loadModels(): Promise<void> {
 		modelsStore.status = 'error';
 		modelsStore.errorCode = error instanceof ApiError ? error.code : 'network';
 		modelsStore.errorMessage =
-			error instanceof ApiError ? error.message : 'Impossible de joindre le serveur.';
+			error instanceof ApiError ? error.message : 'Unable to load the model list.';
 	}
 }
 

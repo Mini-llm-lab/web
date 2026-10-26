@@ -19,14 +19,14 @@ export async function fetchModels(signal?: AbortSignal): Promise<ModelInfo[]> {
 		response = await fetch(`${apiBaseUrl()}/api/models`, { signal });
 	} catch (error) {
 		if (error instanceof DOMException && error.name === 'AbortError') throw error;
-		throw new ApiError('network', 'Impossible de charger la liste des modèles.');
+		throw new ApiError('network', 'Unable to load the model list.');
 	}
 	if (!response.ok) {
-		throw new ApiError('http_error', 'Le serveur a répondu avec une erreur.', response.status);
+		throw new ApiError('http_error', 'The server returned an error.', response.status);
 	}
 	const payload = (await response.json()) as { models?: unknown };
 	if (!payload || !Array.isArray(payload.models)) {
-		throw new ApiError('stream_error', 'Réponse de modèles invalide.');
+		throw new ApiError('stream_error', 'Invalid models response.');
 	}
 	return payload.models.filter(isModelInfo);
 }
@@ -63,15 +63,15 @@ export async function streamChat(
 		});
 	} catch (error) {
 		if (error instanceof DOMException && error.name === 'AbortError') return 'aborted';
-		throw new ApiError('network', 'Impossible de joindre le serveur.');
+		throw new ApiError('network', 'Unable to reach the server.');
 	}
 
 	if (!response.ok) {
 		const code = await extractErrorCode(response);
-		throw new ApiError(code, 'La requête a été refusée par le serveur.', response.status);
+		throw new ApiError(code, 'The request was rejected by the server.', response.status);
 	}
 	if (!response.body) {
-		throw new ApiError('stream_error', 'Le flux de réponse est indisponible.');
+		throw new ApiError('stream_error', 'The response stream is unavailable.');
 	}
 
 	try {
@@ -79,7 +79,7 @@ export async function streamChat(
 	} catch (error) {
 		if (error instanceof DOMException && error.name === 'AbortError') return 'aborted';
 		if (error instanceof ApiError) throw error;
-		throw new ApiError('stream_error', 'La connexion a été interrompue pendant la génération.');
+		throw new ApiError('stream_error', 'The connection was interrupted during generation.');
 	}
 }
 
@@ -115,7 +115,7 @@ async function consumeParsedEvents(
 				const fields = parseJsonFields(event.data);
 				throw new SseProtocolError(
 					typeof fields.code === 'string' ? fields.code : 'generation_failed',
-					typeof fields.message === 'string' ? fields.message : 'La génération a échoué.'
+					typeof fields.message === 'string' ? fields.message : 'Generation failed.'
 				);
 			}
 		}

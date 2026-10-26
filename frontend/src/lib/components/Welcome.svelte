@@ -6,10 +6,10 @@
 	import { modelsStore } from '#lib/stores/models.svelte';
 
 	const suggestions = [
-		'Explique-moi ce qu\u2019est un tokenizer en trois phrases simples.',
-		'Rédige une liste de courses pour un dîner de pâtes pour quatre personnes.',
-		'Donne-moi cinq idées de noms pour une petite application de notes.',
-		'Écris un court poème sur la pluie en automne.'
+		'Explain what a tokenizer is in three simple sentences.',
+		'Write a grocery list for a pasta dinner for four people.',
+		'Give me five name ideas for a small notes app.',
+		'Write a short poem about autumn rain.'
 	];
 
 	let container = $state<HTMLElement | null>(null);
@@ -36,8 +36,7 @@
 		</span>
 		<h1 class="text-2xl font-semibold tracking-tight text-ink">Mini Web</h1>
 		<p class="mt-2 max-w-md text-[15px] leading-relaxed text-ink-soft">
-			Discutez avec vos modèles Mini-LLM, en direct. Choisissez un modèle puis posez votre première
-			question.
+			Chat with your Mini-LLM models, live. Pick a model and ask your first question.
 		</p>
 
 		<div class="mt-8 grid w-full grid-cols-1 gap-2 sm:grid-cols-2">
@@ -53,9 +52,9 @@
 		</div>
 		<p class="mt-6 text-[12px] text-ink-faint">
 			{#if modelsStore.status === 'ready'}
-				{modelsStore.list.filter((model) => model.available).length} modèle(s) disponible(s) actuellement.
+				{modelsStore.list.filter((model) => model.available).length} model(s) available right now.
 			{:else}
-				Vos conversations restent enregistrées dans ce navigateur.
+				Your conversations are saved in this browser.
 			{/if}
 		</p>
 	</div>

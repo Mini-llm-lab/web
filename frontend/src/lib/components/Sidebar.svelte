@@ -88,7 +88,7 @@
 			<button
 				type="button"
 				class="ml-auto rounded-md p-1.5 text-ink-soft hover:bg-surface-2 md:hidden"
-				aria-label="Fermer le menu"
+				aria-label="Close menu"
 				onclick={closeDrawer}
 			>
 				<X size={18} />
@@ -101,7 +101,7 @@
 				onclick={startNewConversation}
 			>
 				<Plus size={16} />
-				Nouvelle conversation
+				New chat
 			</button>
 		</div>
 		<div class="min-h-0 flex-1 overflow-y-auto px-2 pb-2">
@@ -115,7 +115,7 @@
 	<button
 		type="button"
 		bind:this={overlay}
-		aria-label="Fermer le menu"
+		aria-label="Close menu"
 		class="fixed inset-0 z-30 bg-black/40 md:hidden"
 		style="display: none; opacity: 0;"
 		onclick={closeDrawer}

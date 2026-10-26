@@ -18,8 +18,7 @@ export function initSettings(storage?: Storage | null): void {
 	const backend = storage === undefined ? safeStorage() : storage;
 	if (!backend) {
 		settings.persistent = false;
-		settings.storageWarning =
-			"Stockage indisponible : le thème et l'historique ne seront pas conservés.";
+		settings.storageWarning = 'Storage unavailable: theme and history will not be kept.';
 		return;
 	}
 	try {

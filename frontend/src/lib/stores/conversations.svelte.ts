@@ -84,7 +84,7 @@ export function appendMessage(conversationId: string, message: StoredMessage): v
 	if (!conversation) return;
 	conversation.messages.push(message);
 	conversation.updatedAt = Date.now();
-	if (conversation.title === 'Nouvelle conversation' && message.role === 'user') {
+	if (conversation.title === 'New chat' && message.role === 'user') {
 		conversation.title = titleFromMessage(message.content);
 	}
 	save();
