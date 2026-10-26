@@ -577,7 +577,9 @@
 				</button>{/if}
 			{#if models.length > 0}<button
 					type="button"
-					class="inline-flex h-7 flex-none cursor-pointer touch-manipulation items-center gap-1 rounded-lg border-0 bg-transparent px-2 text-[12px] font-medium text-[color-mix(in_srgb,var(--pb-ink)_70%,transparent)] outline-none select-none [-webkit-tap-highlight-color:transparent] [font:inherit] [transition:background-color_150ms_ease,color_150ms_ease] data-on:text-(--pb-ink) data-on:[background:color-mix(in_srgb,var(--pb-ink)_8%,transparent)] [@media(hover:hover)_and_(pointer:fine)]:hover:text-(--pb-ink) [@media(hover:hover)_and_(pointer:fine)]:hover:[background:color-mix(in_srgb,var(--pb-ink)_8%,transparent)]"
+					class="inline-flex h-7 flex-none cursor-pointer touch-manipulation items-center gap-1 rounded-lg border-0 bg-transparent px-2 {hasMenus
+						? ''
+						: '-ml-2'} text-[12px] font-medium text-[color-mix(in_srgb,var(--pb-ink)_70%,transparent)] outline-none select-none [-webkit-tap-highlight-color:transparent] [font:inherit] [transition:background-color_150ms_ease,color_150ms_ease] data-on:text-(--pb-ink) data-on:[background:color-mix(in_srgb,var(--pb-ink)_8%,transparent)] [@media(hover:hover)_and_(pointer:fine)]:hover:text-(--pb-ink) [@media(hover:hover)_and_(pointer:fine)]:hover:[background:color-mix(in_srgb,var(--pb-ink)_8%,transparent)]"
 					aria-label="Choose model"
 					aria-expanded={modelOpen}
 					data-on={modelOpen ? '' : undefined}
