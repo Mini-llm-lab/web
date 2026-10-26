@@ -84,6 +84,7 @@
 				{:else}
 					<Sidebar.MenuButton
 						isActive={conversation.id === conversationsStore.activeId}
+						class="data-active:bg-accent-soft data-active:text-ink"
 						title={conversation.title}
 						onclick={() => {
 							selectConversation(conversation.id);
@@ -107,7 +108,7 @@
 						{:else}
 							<button
 								type="button"
-								class="rounded-md p-1 text-ink-faint hover:bg-surface-2 hover:text-ink"
+								class="rounded-full p-1 text-ink-faint transition-colors hover:bg-surface-2 hover:text-ink"
 								aria-label="Rename conversation"
 								onclick={() => startRename(conversation.id, conversation.title)}
 							>
@@ -115,7 +116,7 @@
 							</button>
 							<button
 								type="button"
-								class="rounded-md p-1 text-ink-faint hover:bg-danger-soft hover:text-danger"
+								class="rounded-full p-1 text-ink-faint transition-colors hover:bg-danger-soft hover:text-danger"
 								aria-label="Delete conversation"
 								onclick={() => requestDelete(conversation.id)}
 							>

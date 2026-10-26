@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Check, Sun, Moon, Monitor } from '@lucide/svelte';
+	import { Check, ChevronUp, Sun, Moon, Monitor } from '@lucide/svelte';
 	import * as DropdownMenu from '#lib/components/ui/dropdown-menu/index.js';
 	import { settings, setThemeMode, type ThemeMode } from '#lib/stores/settings.svelte';
 
@@ -25,6 +25,7 @@
 					<span class="block truncate text-[13px] font-medium text-ink">Mini</span>
 					<span class="block truncate text-[11px] text-ink-faint">Local workspace</span>
 				</span>
+				<ChevronUp size={14} class="shrink-0 text-ink-faint" aria-hidden="true" />
 			</button>
 		{/snippet}
 	</DropdownMenu.Trigger>
