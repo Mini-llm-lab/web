@@ -72,6 +72,14 @@ body {
 	background: var(--accent-soft);
 }
 
+textarea:focus,
+input:focus,
+select:focus {
+	--tw-ring-color: transparent;
+	box-shadow: none;
+	outline: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,

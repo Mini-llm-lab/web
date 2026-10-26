@@ -52,33 +52,37 @@
 {#if conversation}
 	<ChatHeader />
 	<MessagesView />
-	<PromptBar
-		placeholder="Ask anything…"
-		{models}
-		defaultModel={modelsStore.selectedId}
-		background="var(--surface)"
-		color="var(--ink)"
-		menuBackground="var(--surface-2)"
-		width={900}
-		maxRows={5}
-		busy={generating}
-		onStop={handleStop}
-		onSend={handleSend}
-	/>
+	<div class="pb-6">
+		<PromptBar
+			placeholder="Ask anything…"
+			{models}
+			defaultModel={modelsStore.selectedId}
+			background="var(--surface)"
+			color="var(--ink)"
+			menuBackground="var(--surface-2)"
+			width={900}
+			maxRows={5}
+			busy={generating}
+			onStop={handleStop}
+			onSend={handleSend}
+		/>
+	</div>
 {:else}
 	<ChatHeader />
 	<Welcome />
-	<PromptBar
-		placeholder="Ask anything…"
-		{models}
-		defaultModel={modelsStore.selectedId}
-		background="var(--surface)"
-		color="var(--ink)"
-		menuBackground="var(--surface-2)"
-		width={900}
-		maxRows={5}
-		busy={generating}
-		onStop={handleStop}
-		onSend={handleSend}
-	/>
+	<div class="pb-6">
+		<PromptBar
+			placeholder="Ask anything…"
+			{models}
+			defaultModel={modelsStore.selectedId}
+			background="var(--surface)"
+			color="var(--ink)"
+			menuBackground="var(--surface-2)"
+			width={900}
+			maxRows={5}
+			busy={generating}
+			onStop={handleStop}
+			onSend={handleSend}
+		/>
+	</div>
 {/if}
