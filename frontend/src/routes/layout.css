@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn-svelte/tailwind.css';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 @custom-variant dark (&:where(.dark, .dark *));
@@ -18,6 +20,31 @@
 	--danger: #c0433c;
 	--danger-soft: #faf0ef;
 	--ok: #3a8f62;
+	--background: var(--bg);
+	--foreground: var(--ink);
+	--card: var(--surface);
+	--card-foreground: var(--ink);
+	--popover: var(--surface);
+	--popover-foreground: var(--ink);
+	--primary: var(--accent);
+	--primary-foreground: #ffffff;
+	--secondary: var(--surface-2);
+	--secondary-foreground: var(--ink);
+	--muted: var(--surface-2);
+	--muted-foreground: var(--ink-soft);
+	--accent-foreground: var(--ink);
+	--destructive: var(--danger);
+	--input: var(--border);
+	--ring: var(--accent);
+	--radius: 0.625rem;
+	--sidebar: var(--surface);
+	--sidebar-foreground: var(--ink);
+	--sidebar-primary: var(--accent);
+	--sidebar-primary-foreground: #ffffff;
+	--sidebar-accent: var(--surface-2);
+	--sidebar-accent-foreground: var(--ink);
+	--sidebar-border: var(--border);
+	--sidebar-ring: var(--accent);
 }
 
 .dark {
@@ -35,6 +62,31 @@
 	--danger: #e0645c;
 	--danger-soft: #2d1f1e;
 	--ok: #5cbf8a;
+	--background: var(--bg);
+	--foreground: var(--ink);
+	--card: var(--surface);
+	--card-foreground: var(--ink);
+	--popover: var(--surface);
+	--popover-foreground: var(--ink);
+	--primary: var(--accent);
+	--primary-foreground: #131315;
+	--secondary: var(--surface-2);
+	--secondary-foreground: var(--ink);
+	--muted: var(--surface-2);
+	--muted-foreground: var(--ink-soft);
+	--accent-foreground: var(--ink);
+	--destructive: var(--danger);
+	--input: var(--border);
+	--ring: var(--accent);
+	--radius: 0.625rem;
+	--sidebar: var(--surface);
+	--sidebar-foreground: var(--ink);
+	--sidebar-primary: var(--accent);
+	--sidebar-primary-foreground: #131315;
+	--sidebar-accent: var(--surface-2);
+	--sidebar-accent-foreground: var(--ink);
+	--sidebar-border: var(--border);
+	--sidebar-ring: var(--accent);
 }
 
 @theme inline {
@@ -55,6 +107,38 @@
 		ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
 		'Apple Color Emoji', 'Segoe UI Emoji';
 	--font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+	--color-sidebar-ring: var(--sidebar-ring);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar: var(--sidebar);
+	--color-ring: var(--ring);
+	--color-input: var(--input);
+	--color-border: var(--border);
+	--color-destructive: var(--destructive);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-muted: var(--muted);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-secondary: var(--secondary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-primary: var(--primary);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-popover: var(--popover);
+	--color-card-foreground: var(--card-foreground);
+	--color-card: var(--card);
+	--color-foreground: var(--foreground);
+	--color-background: var(--background);
+	--radius-sm: calc(var(--radius) * 0.6);
+	--radius-md: calc(var(--radius) * 0.8);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) * 1.4);
+	--radius-2xl: calc(var(--radius) * 1.8);
+	--radius-3xl: calc(var(--radius) * 2.2);
+	--radius-4xl: calc(var(--radius) * 2.6);
 }
 
 html,
@@ -138,4 +222,16 @@ select:focus {
 	padding: 0.75rem;
 	font-size: 12.5px;
 	background: transparent;
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+	html {
+		@apply font-sans;
+	}
 }
