@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ChatHeader from '#lib/components/ChatHeader.svelte';
 	import MessagesView from '#lib/components/MessagesView.svelte';
 	import PromptBar from '#lib/components/PromptBar.svelte';
 	import Prism from '#lib/components/Prism.svelte';
@@ -50,7 +49,6 @@
 <svelte:window onkeydown={onKeydown} />
 
 {#if conversation}
-	<ChatHeader />
 	<MessagesView />
 	<div class="pb-6">
 		<PromptBar
@@ -68,7 +66,6 @@
 		/>
 	</div>
 {:else}
-	<ChatHeader />
 	<div class="relative min-h-0 flex-1">
 		<div class="absolute inset-0 overflow-hidden" aria-hidden="true">
 			<Prism timeScale={0.5} scale={2} />
