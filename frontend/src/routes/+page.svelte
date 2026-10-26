@@ -69,20 +69,22 @@
 	</div>
 {:else}
 	<ChatHeader />
-	<Welcome />
-	<div class="pb-6">
-		<PromptBar
-			placeholder="Ask anything…"
-			{models}
-			defaultModel={modelsStore.selectedId}
-			background="var(--surface)"
-			color="var(--ink)"
-			menuBackground="var(--surface-2)"
-			width={900}
-			maxRows={5}
-			busy={generating}
-			onStop={handleStop}
-			onSend={handleSend}
-		/>
+	<div class="flex min-h-0 flex-1 flex-col justify-center px-4 pb-6">
+		<Welcome />
+		<div class="mt-8">
+			<PromptBar
+				placeholder="Ask anything…"
+				{models}
+				defaultModel={modelsStore.selectedId}
+				background="var(--surface)"
+				color="var(--ink)"
+				menuBackground="var(--surface-2)"
+				width={900}
+				maxRows={5}
+				busy={generating}
+				onStop={handleStop}
+				onSend={handleSend}
+			/>
+		</div>
 	</div>
 {/if}
