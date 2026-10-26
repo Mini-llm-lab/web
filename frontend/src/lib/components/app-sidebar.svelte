@@ -37,7 +37,7 @@
 		</div>
 		<button
 			type="button"
-			class="flex h-9 w-full items-center justify-center gap-1.5 rounded-lg bg-accent px-3 text-[13px] font-medium text-white shadow-sm transition-colors hover:bg-accent-strong active:scale-[0.98]"
+			class="flex h-9 w-full items-center justify-center gap-1.5 rounded-lg bg-surface-2 px-3 text-[13px] font-medium text-ink transition-colors hover:bg-border active:scale-[0.98]"
 			onclick={startNewChat}
 		>
 			<Plus size={15} />
