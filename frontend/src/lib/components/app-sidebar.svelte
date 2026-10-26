@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Plus } from '@lucide/svelte';
+	import { Plus, X } from '@lucide/svelte';
 	import * as Sidebar from '#lib/components/ui/sidebar/index.js';
 	import ConversationList from '#lib/components/ConversationList.svelte';
 	import StatusBar from '#lib/components/StatusBar.svelte';
@@ -19,14 +19,21 @@
 </script>
 
 <Sidebar.Root collapsible="offcanvas">
-	<Sidebar.Header class="gap-3 p-3">
-		<div class="flex items-center gap-2">
-			<Sidebar.Trigger class="text-ink-soft hover:text-ink" />
+	<Sidebar.Header class="gap-3 px-3 pt-2 pb-3">
+		<div class="flex h-8 items-center gap-2 pl-10">
 			<span
 				class="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-[13px] font-bold text-white shadow-sm"
 				aria-hidden="true">M</span
 			>
 			<span class="text-[15px] font-semibold tracking-tight text-ink">Mini Web</span>
+			<button
+				type="button"
+				class="ml-auto rounded-md p-1.5 text-ink-soft hover:bg-surface-2 md:hidden"
+				aria-label="Close menu"
+				onclick={() => sidebar.setOpenMobile(false)}
+			>
+				<X size={18} />
+			</button>
 		</div>
 		<button
 			type="button"
