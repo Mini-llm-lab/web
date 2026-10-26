@@ -1,3 +1,133 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+	color-scheme: light;
+	--bg: #f6f6f4;
+	--surface: #ffffff;
+	--surface-2: #efefec;
+	--border: #e4e4e0;
+	--ink: #1d1d1a;
+	--ink-soft: #60605a;
+	--ink-faint: #90908a;
+	--accent: #6a5cd6;
+	--accent-strong: #5a49cf;
+	--accent-soft: #eeecfa;
+	--danger: #c0433c;
+	--danger-soft: #faf0ef;
+	--ok: #3a8f62;
+}
+
+.dark {
+	color-scheme: dark;
+	--bg: #131315;
+	--surface: #1b1b1e;
+	--surface-2: #212125;
+	--border: #2c2c31;
+	--ink: #ecebe7;
+	--ink-soft: #a5a49d;
+	--ink-faint: #71706a;
+	--accent: #9287ee;
+	--accent-strong: #a496f5;
+	--accent-soft: #26243a;
+	--danger: #e0645c;
+	--danger-soft: #2d1f1e;
+	--ok: #5cbf8a;
+}
+
+@theme inline {
+	--color-bg: var(--bg);
+	--color-surface: var(--surface);
+	--color-surface-2: var(--surface-2);
+	--color-line: var(--border);
+	--color-ink: var(--ink);
+	--color-ink-soft: var(--ink-soft);
+	--color-ink-faint: var(--ink-faint);
+	--color-accent: var(--accent);
+	--color-accent-strong: var(--accent-strong);
+	--color-accent-soft: var(--accent-soft);
+	--color-danger: var(--danger);
+	--color-danger-soft: var(--danger-soft);
+	--color-ok: var(--ok);
+	--font-sans:
+		ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+		'Apple Color Emoji', 'Segoe UI Emoji';
+	--font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	background: var(--bg);
+	color: var(--ink);
+	-webkit-font-smoothing: antialiased;
+}
+
+::selection {
+	background: var(--accent-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+.codeblock {
+	position: relative;
+	overflow: hidden;
+	border-radius: 0.75rem;
+	border: 1px solid var(--border);
+	background: var(--surface-2);
+}
+
+.codeblock-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.3rem 0.75rem;
+	border-bottom: 1px solid var(--border);
+	font-size: 11px;
+	color: var(--ink-faint);
+}
+
+.codeblock-lang {
+	font-family: var(--font-mono, monospace);
+	letter-spacing: 0.02em;
+}
+
+.codeblock-copy {
+	border-radius: 0.375rem;
+	padding: 0.15rem 0.5rem;
+	font-size: 11px;
+	color: var(--ink-soft);
+	border: 1px solid var(--border);
+	background: var(--surface);
+	cursor: pointer;
+}
+
+.codeblock-copy:hover {
+	color: var(--ink);
+	border-color: var(--ink-faint);
+}
+
+.codeblock pre {
+	margin: 0;
+	border: none;
+	border-radius: 0;
+	background: transparent;
+}
+
+.codeblock pre code {
+	padding: 0.75rem;
+	font-size: 12.5px;
+	background: transparent;
+}
