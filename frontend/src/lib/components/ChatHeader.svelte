@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Menu } from '@lucide/svelte';
-	import ModelPicker from '#lib/components/ModelPicker.svelte';
 	import { toggleDrawer } from '#lib/stores/ui.svelte';
 	import { activeConversation } from '#lib/stores/conversations.svelte';
 
@@ -21,5 +20,4 @@
 			{conversation?.title ?? 'Mini Web'}
 		</h1>
 	</div>
-	<ModelPicker />
 </header>
