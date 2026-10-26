@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Pencil, Check, X, Trash2 } from '@lucide/svelte';
+	import * as Sidebar from '#lib/components/ui/sidebar/index.js';
 	import {
 		conversationsStore,
 		sortedConversations,
@@ -46,10 +47,9 @@
 {#if conversations.length === 0}
 	<p class="px-2 py-4 text-[13px] text-ink-faint">No conversations yet.</p>
 {:else}
-	<ul class="flex flex-col gap-0.5 py-1" role="list">
+	<Sidebar.Menu>
 		{#each conversations as conversation (conversation.id)}
-			{@const active = conversation.id === conversationsStore.activeId}
-			<li class="group relative">
+			<Sidebar.MenuItem class="group/menu-item relative">
 				{#if renamingId === conversation.id}
 					<div class="flex items-center gap-1 rounded-lg bg-surface-2 px-2 py-1.5">
 						<input
@@ -82,22 +82,19 @@
 						</button>
 					</div>
 				{:else}
-					<button
-						type="button"
-						class="flex w-full items-center gap-1 rounded-lg px-2.5 py-2 text-left text-[13px] transition-colors {active
-							? 'bg-accent-soft text-ink'
-							: 'text-ink-soft hover:bg-surface-2'}"
+					<Sidebar.MenuButton
+						isActive={conversation.id === conversationsStore.activeId}
+						title={conversation.title}
 						onclick={() => {
 							selectConversation(conversation.id);
 							onnavigate?.();
 						}}
 					>
-						<span class="min-w-0 flex-1 truncate" title={conversation.title}
-							>{conversation.title}</span
-						>
-					</button>
+						<span class="truncate">{conversation.title}</span>
+					</Sidebar.MenuButton>
 					<span
-						class="absolute top-1.5 right-1 flex gap-0.5 opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100"
+						data-sidebar="menu-action"
+						class="absolute top-1.5 right-1 flex gap-0.5 opacity-0 transition-opacity group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100"
 					>
 						{#if confirmingDeleteId === conversation.id}
 							<button
@@ -127,7 +124,7 @@
 						{/if}
 					</span>
 				{/if}
-			</li>
+			</Sidebar.MenuItem>
 		{/each}
-	</ul>
+	</Sidebar.Menu>
 {/if}

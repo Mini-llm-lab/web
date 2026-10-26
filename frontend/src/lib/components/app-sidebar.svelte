@@ -3,6 +3,7 @@
 	import * as Sidebar from '#lib/components/ui/sidebar/index.js';
 	import ConversationList from '#lib/components/ConversationList.svelte';
 	import StatusBar from '#lib/components/StatusBar.svelte';
+	import SidebarAccount from '#lib/components/sidebar-account.svelte';
 	import { closeConversation } from '#lib/stores/conversations.svelte';
 
 	const sidebar = Sidebar.useSidebar();
@@ -38,13 +39,15 @@
 	</Sidebar.Header>
 	<Sidebar.Content class="overflow-y-auto px-2">
 		<Sidebar.Group>
+			<Sidebar.GroupLabel>Conversations</Sidebar.GroupLabel>
 			<Sidebar.GroupContent>
 				<ConversationList onnavigate={closeMobile} />
 			</Sidebar.GroupContent>
 		</Sidebar.Group>
 	</Sidebar.Content>
-	<Sidebar.Footer class="border-t border-line px-2 py-2">
+	<Sidebar.Footer class="gap-2 px-2 py-2">
 		<StatusBar />
+		<SidebarAccount />
 	</Sidebar.Footer>
 	<Sidebar.Rail />
 </Sidebar.Root>

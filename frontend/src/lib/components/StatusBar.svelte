@@ -2,7 +2,6 @@
 	import { AlertTriangle, RotateCcw } from '@lucide/svelte';
 	import { conversationsStore } from '#lib/stores/conversations.svelte';
 	import { loadModels, modelsStore } from '#lib/stores/models.svelte';
-	import ThemeSwitch from '#lib/components/ThemeSwitch.svelte';
 
 	const warning = $derived.by(() => {
 		if (!conversationsStore.persistent) {
@@ -34,5 +33,4 @@
 			{warning}
 		</p>
 	{/if}
-	<ThemeSwitch />
 </div>
